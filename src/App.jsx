@@ -413,6 +413,13 @@ function App() {
               </div>
               <span className="open-badge">Open</span>
             </a>
+            <a className="cl" href="tel:+919157222727">
+              <div className="cl-ic" style={{ background: 'rgba(245,158,11,0.08)' }}>📞</div>
+              <div>
+                <div className="cl-label">Phone</div>
+                <div className="cl-val">+91 91572 22727</div>
+              </div>
+            </a>
             <a className="cl" href="https://linkedin.com/in/Dharmik" target="_blank" rel="noreferrer">
               <div className="cl-ic" style={{ background: 'rgba(168,85,247,0.08)' }}>in</div>
               <div>
