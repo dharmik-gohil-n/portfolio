@@ -1083,3 +1083,95 @@ footer p {
     text-align: center;
   }
 }
+
+/* ── TWINKLING STARS ── */
+.stars-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── TYPEWRITER CURSOR ── */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--c);
+  margin-left: 5px;
+  vertical-align: middle;
+  animation: cursor-blink 1s steps(2, start) infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── GLOWING CARDS HOVER ── */
+.skill-card, .proj-card, .edu-card, .cl {
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.skill-card:hover {
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+  border-color: rgba(0, 229, 255, 0.4) !important;
+}
+
+.proj-card:nth-child(1):hover {
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+}
+
+.proj-card:nth-child(2):hover {
+  box-shadow: 0 0 25px rgba(244, 63, 142, 0.15);
+}
+
+.proj-card:nth-child(3):hover {
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+}
+
+.proj-card:nth-child(4):hover {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
+}
+
+.edu-card:hover {
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4) !important;
+}
+
+.cl:hover {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+}

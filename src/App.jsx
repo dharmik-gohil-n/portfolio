@@ -6,10 +6,82 @@ function App() {
   const [skillsLoaded, setSkillsLoaded] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [stars, setStars] = useState([]);
 
+  // Typewriter parameters
+  const roles = [
+    'Software Developer',
+    'MERN Stack Developer',
+    'AI-Powered Apps Creator',
+    'Data Analysis Enthusiast'
+  ];
+  const [roleText, setRoleText] = useState('');
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Trigger skill bars animation
   useEffect(() => {
     const timer = setTimeout(() => setSkillsLoaded(true), 400);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Generate twinkling background stars
+  useEffect(() => {
+    const generatedStars = Array.from({ length: 45 }, (_, i) => ({
+      id: i,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      size: `${Math.random() * 1.8 + 0.8}px`,
+      delay: `${Math.random() * 3}s`,
+      duration: `${Math.random() * 3 + 2.5}s`
+    }));
+    setStars(generatedStars);
+  }, []);
+
+  // Typewriter effect logic
+  useEffect(() => {
+    let timer;
+    const currentFullText = roles[roleIdx];
+    
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setRoleText((prev) => prev.slice(0, -1));
+      }, 35);
+    } else {
+      timer = setTimeout(() => {
+        setRoleText((prev) => currentFullText.slice(0, prev.length + 1));
+      }, 75);
+    }
+
+    if (!isDeleting && roleText === currentFullText) {
+      timer = setTimeout(() => setIsDeleting(true), 2500);
+    } else if (isDeleting && roleText === '') {
+      setIsDeleting(false);
+      setRoleIdx((prev) => (prev + 1) % roles.length);
+    }
+
+    return () => clearTimeout(timer);
+  }, [roleText, isDeleting, roleIdx]);
+
+  // Scroll Reveal Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    const elements = document.querySelectorAll('.reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
   }, []);
 
   const handleInputChange = (e) => {
@@ -37,6 +109,24 @@ function App() {
 
   return (
     <>
+      {/* Background Starfield overlay */}
+      <div className="stars-container">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="star"
+            style={{
+              top: star.top,
+              left: star.left,
+              width: star.size,
+              height: star.size,
+              animationDelay: star.delay,
+              animationDuration: star.duration
+            }}
+          />
+        ))}
+      </div>
+
       <div className="orb orb1"></div>
       <div className="orb orb2"></div>
       <div className="orb orb3"></div>
@@ -60,7 +150,9 @@ function App() {
             <span className="hero-dot"></span>Available for opportunities
           </div>
           <h1 className="hero-name">Dharmik<br /><strong>Gohil</strong></h1>
-          <p className="hero-role">Software Developer · Data Analysis Enthusiast</p>
+          <p className="hero-role" style={{ minHeight: '24px' }}>
+            I am a <span style={{ color: 'var(--c)', fontWeight: 600 }}>{roleText}</span><span className="cursor"></span>
+          </p>
           <p className="hero-bio">
             Motivated full-stack developer with hands-on experience in AI-powered applications,
             frontend engineering, and backend integration. Skilled in React.js, Node.js, Python,
@@ -71,7 +163,7 @@ function App() {
             <a className="btn-ghost" href="#contact">Get in Touch</a>
             <a className="btn-ghost" href="https://linkedin.com/in/Dharmik" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           </div>
-          <div className="hero-stats">
+          <div className="hero-stats reveal">
             <div>
               <div className="stat-n">3<span>+</span></div>
               <div className="stat-l">Years Exp</div>
@@ -111,8 +203,9 @@ function App() {
       <section className="section" id="skills">
         <div className="section-eyebrow">Expertise</div>
         <div className="section-title">Technical <em>Skills</em></div>
+        
         <div className="about-grid">
-          <div className="skill-card">
+          <div className="skill-card reveal">
             <div className="sk-icon">⚛</div>
             <div className="sk-name">Frontend Development</div>
             <div className="sk-desc">Building responsive, performant UIs with React.js and Tailwind CSS. Converting Figma designs into reusable components with cross-browser compatibility.</div>
@@ -123,7 +216,7 @@ function App() {
             </div>
           </div>
           
-          <div className="skill-card">
+          <div className="skill-card reveal">
             <div className="sk-icon" style={{ backgroundColor: 'rgba(168,85,247,0.08)', borderColor: 'rgba(168,85,247,0.15)' }}>⬡</div>
             <div className="sk-name">Backend & APIs</div>
             <div className="sk-desc">Designing REST APIs, JWT auth flows, and scalable Node.js/Express services. MVC architecture with MongoDB, MySQL, and SQLite backends.</div>
@@ -136,7 +229,7 @@ function App() {
             </div>
           </div>
 
-          <div className="skill-card">
+          <div className="skill-card reveal">
             <div className="sk-icon" style={{ backgroundColor: 'rgba(244,63,142,0.08)', borderColor: 'rgba(244,63,142,0.15)' }}>◈</div>
             <div className="sk-name">AI & Machine Learning</div>
             <div className="sk-desc">Building CNN models for medical imaging, integrating LLM APIs for conversational AI, and deploying AI assistants — Brain Tumor Detection, anonymous.ai.</div>
@@ -148,7 +241,7 @@ function App() {
             </div>
           </div>
 
-          <div className="skill-card">
+          <div className="skill-card reveal">
             <div className="sk-icon" style={{ backgroundColor: 'rgba(245,158,11,0.08)', borderColor: 'rgba(245,158,11,0.15)' }}>▦</div>
             <div className="sk-name">Data Analysis</div>
             <div className="sk-desc">SQL queries, Pandas data wrangling, Power BI and Tableau dashboards. Building data-driven insights for business decision-making.</div>
@@ -160,7 +253,7 @@ function App() {
             </div>
           </div>
 
-          <div className="skill-card">
+          <div className="skill-card reveal">
             <div className="sk-icon">◎</div>
             <div className="sk-name">Languages</div>
             <div className="sk-desc">Core programming languages spanning frontend scripting, backend logic, data science, and systems programming.</div>
@@ -173,7 +266,7 @@ function App() {
             </div>
           </div>
 
-          <div className="skill-card">
+          <div className="skill-card reveal">
             <div className="sk-icon" style={{ backgroundColor: 'rgba(168,85,247,0.08)', borderColor: 'rgba(168,85,247,0.15)' }}>◆</div>
             <div className="sk-name">Tools & DevOps</div>
             <div className="sk-desc">Git version control, Postman API testing, Google Analytics & Search Console for traffic monitoring and performance improvement.</div>
@@ -187,7 +280,7 @@ function App() {
         </div>
 
         {/* Skill bars */}
-        <div style={{ marginTop: '64px' }}>
+        <div style={{ marginTop: '64px' }} className="reveal">
           <div className="attr-section-title">Proficiency Levels</div>
           <div className="skills-bar-grid" id="skillBars">
             {skillBars.map((bar, i) => (
@@ -216,8 +309,9 @@ function App() {
       <section className="section" id="experience" style={{ paddingTop: 0 }}>
         <div className="section-eyebrow">Career</div>
         <div className="section-title">Work <em>Experience</em></div>
+        
         <div className="exp-list">
-          <div className="exp-item">
+          <div className="exp-item reveal">
             <div className="exp-meta">
               <div className="exp-date">Sep 2025 – Jan 2026</div>
               <div className="exp-company c">Shakti Agrotech</div>
@@ -234,7 +328,7 @@ function App() {
             </div>
           </div>
 
-          <div className="exp-item">
+          <div className="exp-item reveal">
             <div className="exp-meta">
               <div className="exp-date">May – Aug 2025</div>
               <div className="exp-company p">Meetanshi</div>
@@ -251,7 +345,7 @@ function App() {
             </div>
           </div>
 
-          <div className="exp-item">
+          <div className="exp-item reveal">
             <div className="exp-meta">
               <div className="exp-date">Oct 2024 – Feb 2025</div>
               <div className="exp-company pk">Azziptech</div>
@@ -273,13 +367,14 @@ function App() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="section-eyebrow">Academic</div>
         <div className="section-title"><em>Education</em></div>
+        
         <div className="edu-grid">
-          <div className="edu-card">
+          <div className="edu-card reveal">
             <div className="edu-deg">Bachelor of Technology</div>
             <div className="edu-inst">Gyanmanjari Innovative University</div>
             <div className="edu-dates">Information Technology · 2023 – 2026</div>
           </div>
-          <div className="edu-card">
+          <div className="edu-card reveal">
             <div className="edu-deg">Diploma in Information Technology</div>
             <div className="edu-inst">Sir Bhavsinhji Polytechnic Institute</div>
             <div className="edu-dates">2019 – 2022</div>
@@ -291,8 +386,9 @@ function App() {
       <section className="section" id="projects" style={{ paddingTop: 0 }}>
         <div className="section-eyebrow">Portfolio</div>
         <div className="section-title">Featured <em>Projects</em></div>
+        
         <div className="projects-grid">
-          <div className="proj-card">
+          <div className="proj-card reveal">
             <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(168, 85, 247, 0.08))' }}>📚</div>
             <div className="proj-body">
               <div className="proj-year" style={{ color: '#00e5ff' }}>MERN · AI · 2024</div>
@@ -307,7 +403,7 @@ function App() {
             </div>
           </div>
 
-          <div className="proj-card">
+          <div className="proj-card reveal">
             <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(244, 63, 142, 0.1), rgba(168, 85, 247, 0.08))' }}>🧠</div>
             <div className="proj-body">
               <div className="proj-year" style={{ color: '#f43f8e' }}>Python · ML · 2023</div>
@@ -321,7 +417,7 @@ function App() {
             </div>
           </div>
 
-          <div className="proj-card">
+          <div className="proj-card reveal">
             <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(245, 158, 11, 0.06))' }}>✦</div>
             <div className="proj-body">
               <div className="proj-year" style={{ color: '#a855f7' }}>AI · SaaS · 2026</div>
@@ -335,7 +431,7 @@ function App() {
             </div>
           </div>
 
-          <div className="proj-card">
+          <div className="proj-card reveal">
             <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.09), rgba(0, 229, 255, 0.06))' }}>🛒</div>
             <div className="proj-body">
               <div className="proj-year" style={{ color: '#f59e0b' }}>Full-Stack · 2024</div>
@@ -353,7 +449,7 @@ function App() {
       </section>
 
       {/* RADAR COMPARISON */}
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section reveal" style={{ paddingTop: 0 }}>
         <div className="section-eyebrow">Visual</div>
         <div className="section-title">Skill <em>Radar</em></div>
         <CompareRadar />
@@ -363,7 +459,8 @@ function App() {
       <section className="section" id="contact" style={{ paddingTop: 0 }}>
         <div className="section-eyebrow">Let's Connect</div>
         <div className="section-title">Get in <em>Touch</em></div>
-        <div className="contact-wrap">
+        
+        <div className="contact-wrap reveal">
           <div>
             <p className="contact-intro">Open to full-stack developer roles, data analysis opportunities, and AI/ML integration projects. Based in Bhavnagar, Gujarat — available remotely.</p>
             
@@ -404,6 +501,7 @@ function App() {
               <button className="btn-primary" style={{ alignSelf: 'flex-start' }} type="submit">Send Message</button>
             </form>
           </div>
+          
           <div className="contact-links">
             <a className="cl" href="mailto:dharmikgohil88@gmail.com">
               <div className="cl-ic" style={{ background: 'rgba(0,229,255,0.08)' }}>✉</div>
