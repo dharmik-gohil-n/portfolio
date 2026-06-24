@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import HeroRadar from './components/HeroRadar';
 import CompareRadar from './components/CompareRadar';
+import TiltCard from './components/TiltCard';
+import TagSphere from './components/TagSphere';
 
 function App() {
   const [skillsLoaded, setSkillsLoaded] = useState(false);
@@ -205,78 +207,85 @@ function App() {
         <div className="section-title">Technical <em>Skills</em></div>
         
         <div className="about-grid">
-          <div className="skill-card reveal">
-            <div className="sk-icon">⚛</div>
-            <div className="sk-name">Frontend Development</div>
-            <div className="sk-desc">Building responsive, performant UIs with React.js and Tailwind CSS. Converting Figma designs into reusable components with cross-browser compatibility.</div>
-            <div className="sk-tags">
-              <span className="sk-tag">React.js</span>
-              <span className="sk-tag">Tailwind CSS</span>
-              <span className="sk-tag">JavaScript</span>
+          <TiltCard className="reveal">
+            <div className="skill-card" style={{ height: '100%' }}>
+              <div className="sk-icon">⚛</div>
+              <div className="sk-name">Frontend Development</div>
+              <div className="sk-desc">Building responsive, performant UIs with React.js and Tailwind CSS. Converting Figma designs into reusable components with cross-browser compatibility.</div>
+              <div className="sk-tags">
+                <span className="sk-tag">React.js</span>
+                <span className="sk-tag">Tailwind CSS</span>
+                <span className="sk-tag">JavaScript</span>
+              </div>
             </div>
-          </div>
+          </TiltCard>
           
-          <div className="skill-card reveal">
-            <div className="sk-icon" style={{ backgroundColor: 'rgba(168,85,247,0.08)', borderColor: 'rgba(168,85,247,0.15)' }}>⬡</div>
-            <div className="sk-name">Backend & APIs</div>
-            <div className="sk-desc">Designing REST APIs, JWT auth flows, and scalable Node.js/Express services. MVC architecture with MongoDB, MySQL, and SQLite backends.</div>
-            <div className="sk-tags">
-              <span className="sk-tag p">Node.js</span>
-              <span className="sk-tag p">Express.js</span>
-              <span className="sk-tag p">REST APIs</span>
-              <span className="sk-tag p">MongoDB</span>
-              <span className="sk-tag p">MySQL</span>
+          <TiltCard className="reveal">
+            <div className="skill-card" style={{ height: '100%' }}>
+              <div className="sk-icon" style={{ backgroundColor: 'rgba(168,85,247,0.08)', borderColor: 'rgba(168,85,247,0.15)' }}>⬡</div>
+              <div className="sk-name">Backend & APIs</div>
+              <div className="sk-desc">Designing REST APIs, JWT auth flows, and scalable Node.js/Express services. MVC architecture with MongoDB, MySQL, and SQLite backends.</div>
+              <div className="sk-tags">
+                <span className="sk-tag p">Node.js</span>
+                <span className="sk-tag p">Express.js</span>
+                <span className="sk-tag p">REST APIs</span>
+                <span className="sk-tag p">MongoDB</span>
+                <span className="sk-tag p">MySQL</span>
+              </div>
             </div>
+          </TiltCard>
+
+          <TiltCard className="reveal">
+            <div className="skill-card" style={{ height: '100%' }}>
+              <div className="sk-icon" style={{ backgroundColor: 'rgba(244,63,142,0.08)', borderColor: 'rgba(244,63,142,0.15)' }}>◈</div>
+              <div className="sk-name">AI & Machine Learning</div>
+              <div className="sk-desc">Building CNN models for medical imaging, integrating LLM APIs for conversational AI, and deploying AI assistants — Brain Tumor Detection, anonymous.ai.</div>
+              <div className="sk-tags">
+                <span className="sk-tag pk">Python</span>
+                <span className="sk-tag pk">Machine Learning</span>
+                <span className="sk-tag pk">CNN</span>
+                <span className="sk-tag pk">LLM APIs</span>
+              </div>
+            </div>
+          </TiltCard>
+
+          <TiltCard className="reveal">
+            <div className="skill-card" style={{ height: '100%' }}>
+              <div className="sk-icon" style={{ backgroundColor: 'rgba(245,158,11,0.08)', borderColor: 'rgba(245,158,11,0.15)' }}>▦</div>
+              <div className="sk-name">Data Analysis</div>
+              <div className="sk-desc">SQL queries, Pandas data wrangling, Power BI and Tableau dashboards. Building data-driven insights for business decision-making.</div>
+              <div className="sk-tags">
+                <span className="sk-tag g">SQL</span>
+                <span className="sk-tag g">Python / Pandas</span>
+                <span className="sk-tag g">Power BI</span>
+                <span className="sk-tag g">Tableau</span>
+              </div>
+            </div>
+          </TiltCard>
+
+          {/* 4D ANIMATED SKILL SPHERE CARD */}
+          <div className="skill-card reveal" style={{ display: 'flex', flexDirection: 'column', padding: '0', overflow: 'hidden', borderStyle: 'dashed' }}>
+            <div style={{ padding: '28px 28px 0 28px' }}>
+              <div className="sk-icon" style={{ color: 'var(--c)' }}>🌐</div>
+              <div className="sk-name">Interactive Skills Cloud</div>
+              <div className="sk-desc">Dynamic 3D tag sphere representing all programming languages, tools, databases, and visual packages. Move your cursor over the sphere to change rotation direction.</div>
+            </div>
+            <TagSphere />
           </div>
 
-          <div className="skill-card reveal">
-            <div className="sk-icon" style={{ backgroundColor: 'rgba(244,63,142,0.08)', borderColor: 'rgba(244,63,142,0.15)' }}>◈</div>
-            <div className="sk-name">AI & Machine Learning</div>
-            <div className="sk-desc">Building CNN models for medical imaging, integrating LLM APIs for conversational AI, and deploying AI assistants — Brain Tumor Detection, anonymous.ai.</div>
-            <div className="sk-tags">
-              <span className="sk-tag pk">Python</span>
-              <span className="sk-tag pk">Machine Learning</span>
-              <span className="sk-tag pk">CNN</span>
-              <span className="sk-tag pk">LLM APIs</span>
+          <TiltCard className="reveal">
+            <div className="skill-card" style={{ height: '100%' }}>
+              <div className="sk-icon" style={{ backgroundColor: 'rgba(168,85,247,0.08)', borderColor: 'rgba(168,85,247,0.15)' }}>◆</div>
+              <div className="sk-name">Tools & DevOps</div>
+              <div className="sk-desc">Git version control, Postman API testing, Google Analytics & Search Console for traffic monitoring and performance improvement.</div>
+              <div className="sk-tags">
+                <span className="sk-tag p">Git</span>
+                <span className="sk-tag p">Postman</span>
+                <span className="sk-tag p">Google Analytics</span>
+                <span className="sk-tag p">Prompt Engineering</span>
+              </div>
             </div>
-          </div>
-
-          <div className="skill-card reveal">
-            <div className="sk-icon" style={{ backgroundColor: 'rgba(245,158,11,0.08)', borderColor: 'rgba(245,158,11,0.15)' }}>▦</div>
-            <div className="sk-name">Data Analysis</div>
-            <div className="sk-desc">SQL queries, Pandas data wrangling, Power BI and Tableau dashboards. Building data-driven insights for business decision-making.</div>
-            <div className="sk-tags">
-              <span className="sk-tag g">SQL</span>
-              <span className="sk-tag g">Python / Pandas</span>
-              <span className="sk-tag g">Power BI</span>
-              <span className="sk-tag g">Tableau</span>
-            </div>
-          </div>
-
-          <div className="skill-card reveal">
-            <div className="sk-icon">◎</div>
-            <div className="sk-name">Languages</div>
-            <div className="sk-desc">Core programming languages spanning frontend scripting, backend logic, data science, and systems programming.</div>
-            <div className="sk-tags">
-              <span className="sk-tag">JavaScript</span>
-              <span className="sk-tag">Python</span>
-              <span className="sk-tag">Java</span>
-              <span className="sk-tag">SQL</span>
-              <span className="sk-tag">C/C++</span>
-            </div>
-          </div>
-
-          <div className="skill-card reveal">
-            <div className="sk-icon" style={{ backgroundColor: 'rgba(168,85,247,0.08)', borderColor: 'rgba(168,85,247,0.15)' }}>◆</div>
-            <div className="sk-name">Tools & DevOps</div>
-            <div className="sk-desc">Git version control, Postman API testing, Google Analytics & Search Console for traffic monitoring and performance improvement.</div>
-            <div className="sk-tags">
-              <span className="sk-tag p">Git</span>
-              <span className="sk-tag p">Postman</span>
-              <span className="sk-tag p">Google Analytics</span>
-              <span className="sk-tag p">Prompt Engineering</span>
-            </div>
-          </div>
+          </TiltCard>
         </div>
 
         {/* Skill bars */}
@@ -369,16 +378,21 @@ function App() {
         <div className="section-title"><em>Education</em></div>
         
         <div className="edu-grid">
-          <div className="edu-card reveal">
-            <div className="edu-deg">Bachelor of Technology</div>
-            <div className="edu-inst">Gyanmanjari Innovative University</div>
-            <div className="edu-dates">Information Technology · 2023 – 2026</div>
-          </div>
-          <div className="edu-card reveal">
-            <div className="edu-deg">Diploma in Information Technology</div>
-            <div className="edu-inst">Sir Bhavsinhji Polytechnic Institute</div>
-            <div className="edu-dates">2019 – 2022</div>
-          </div>
+          <TiltCard className="reveal">
+            <div className="edu-card" style={{ height: '100%' }}>
+              <div className="edu-deg">Bachelor of Technology</div>
+              <div className="edu-inst">Gyanmanjari Innovative University</div>
+              <div className="edu-dates">Information Technology · 2023 – 2026</div>
+            </div>
+          </TiltCard>
+          
+          <TiltCard className="reveal">
+            <div className="edu-card" style={{ height: '100%' }}>
+              <div className="edu-deg">Diploma in Information Technology</div>
+              <div className="edu-inst">Sir Bhavsinhji Polytechnic Institute</div>
+              <div className="edu-dates">2019 – 2022</div>
+            </div>
+          </TiltCard>
         </div>
       </section>
 
@@ -388,63 +402,71 @@ function App() {
         <div className="section-title">Featured <em>Projects</em></div>
         
         <div className="projects-grid">
-          <div className="proj-card reveal">
-            <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(168, 85, 247, 0.08))' }}>📚</div>
-            <div className="proj-body">
-              <div className="proj-year" style={{ color: '#00e5ff' }}>MERN · AI · 2024</div>
-              <div className="proj-name">Book Swan</div>
-              <div className="proj-desc">Full-stack MERN e-commerce application with an AI-powered conversational assistant capable of real-time intelligent responses. Integrated LLM APIs for natural language understanding.</div>
-              <div className="proj-stack">
-                <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>React.js</span>
-                <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>Node.js</span>
-                <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>MongoDB</span>
-                <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>LLM API</span>
+          <TiltCard className="reveal">
+            <div className="proj-card" style={{ height: '100%' }}>
+              <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(168, 85, 247, 0.08))' }}>📚</div>
+              <div className="proj-body">
+                <div className="proj-year" style={{ color: '#00e5ff' }}>MERN · AI · 2024</div>
+                <div className="proj-name">Book Swan</div>
+                <div className="proj-desc">Full-stack MERN e-commerce application with an AI-powered conversational assistant capable of real-time intelligent responses. Integrated LLM APIs for natural language understanding.</div>
+                <div className="proj-stack">
+                  <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>React.js</span>
+                  <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>Node.js</span>
+                  <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>MongoDB</span>
+                  <span className="ps" style={{ background: 'rgba(0, 229, 255, 0.08)', color: '#00e5ff', border: '1px solid rgba(0, 229, 255, 0.2)' }}>LLM API</span>
+                </div>
               </div>
             </div>
-          </div>
+          </TiltCard>
 
-          <div className="proj-card reveal">
-            <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(244, 63, 142, 0.1), rgba(168, 85, 247, 0.08))' }}>🧠</div>
-            <div className="proj-body">
-              <div className="proj-year" style={{ color: '#f43f8e' }}>Python · ML · 2023</div>
-              <div className="proj-name">Brain Tumor Detection System</div>
-              <div className="proj-desc">CNN model to classify MRI scans as tumor-positive or negative. Applied preprocessing techniques to enhance model accuracy. Demonstrated AI in healthcare diagnostics.</div>
-              <div className="proj-stack">
-                <span className="ps" style={{ background: 'rgba(244, 63, 142, 0.08)', color: '#f43f8e', border: '1px solid rgba(244, 63, 142, 0.2)' }}>Python</span>
-                <span className="ps" style={{ background: 'rgba(244, 63, 142, 0.08)', color: '#f43f8e', border: '1px solid rgba(244, 63, 142, 0.2)' }}>TensorFlow</span>
-                <span className="ps" style={{ background: 'rgba(244, 63, 142, 0.08)', color: '#f43f8e', border: '1px solid rgba(244, 63, 142, 0.2)' }}>CNN</span>
+          <TiltCard className="reveal">
+            <div className="proj-card" style={{ height: '100%' }}>
+              <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(244, 63, 142, 0.1), rgba(168, 85, 247, 0.08))' }}>🧠</div>
+              <div className="proj-body">
+                <div className="proj-year" style={{ color: '#f43f8e' }}>Python · ML · 2023</div>
+                <div className="proj-name">Brain Tumor Detection System</div>
+                <div className="proj-desc">CNN model to classify MRI scans as tumor-positive or negative. Applied preprocessing techniques to enhance model accuracy. Demonstrated AI in healthcare diagnostics.</div>
+                <div className="proj-stack">
+                  <span className="ps" style={{ background: 'rgba(244, 63, 142, 0.08)', color: '#f43f8e', border: '1px solid rgba(244, 63, 142, 0.2)' }}>Python</span>
+                  <span className="ps" style={{ background: 'rgba(244, 63, 142, 0.08)', color: '#f43f8e', border: '1px solid rgba(244, 63, 142, 0.2)' }}>TensorFlow</span>
+                  <span className="ps" style={{ background: 'rgba(244, 63, 142, 0.08)', color: '#f43f8e', border: '1px solid rgba(244, 63, 142, 0.2)' }}>CNN</span>
+                </div>
               </div>
             </div>
-          </div>
+          </TiltCard>
 
-          <div className="proj-card reveal">
-            <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(245, 158, 11, 0.06))' }}>✦</div>
-            <div className="proj-body">
-              <div className="proj-year" style={{ color: '#a855f7' }}>AI · SaaS · 2026</div>
-              <div className="proj-name">anonymous.ai</div>
-              <div className="proj-desc">Intelligent AI assistant "Anonymous" inspired by modern conversational AI systems. Full-stack React.js frontend and Node.js backend with RESTful APIs for seamless communication.</div>
-              <div className="proj-stack">
-                <span className="ps" style={{ background: 'rgba(168, 85, 247, 0.08)', color: '#a855f7', border: '1px solid rgba(168, 85, 247, 0.2)' }}>React.js</span>
-                <span className="ps" style={{ background: 'rgba(168, 85, 247, 0.08)', color: '#a855f7', border: '1px solid rgba(168, 85, 247, 0.2)' }}>Node.js</span>
-                <span className="ps" style={{ background: 'rgba(168, 85, 247, 0.08)', color: '#a855f7', border: '1px solid rgba(168, 85, 247, 0.2)' }}>REST APIs</span>
+          <TiltCard className="reveal">
+            <div className="proj-card" style={{ height: '100%' }}>
+              <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(245, 158, 11, 0.06))' }}>✦</div>
+              <div className="proj-body">
+                <div className="proj-year" style={{ color: '#a855f7' }}>AI · SaaS · 2026</div>
+                <div className="proj-name">anonymous.ai</div>
+                <div className="proj-desc">Intelligent AI assistant "Anonymous" inspired by modern conversational AI systems. Full-stack React.js frontend and Node.js backend with RESTful APIs for seamless communication.</div>
+                <div className="proj-stack">
+                  <span className="ps" style={{ background: 'rgba(168, 85, 247, 0.08)', color: '#a855f7', border: '1px solid rgba(168, 85, 247, 0.2)' }}>React.js</span>
+                  <span className="ps" style={{ background: 'rgba(168, 85, 247, 0.08)', color: '#a855f7', border: '1px solid rgba(168, 85, 247, 0.2)' }}>Node.js</span>
+                  <span className="ps" style={{ background: 'rgba(168, 85, 247, 0.08)', color: '#a855f7', border: '1px solid rgba(168, 85, 247, 0.2)' }}>REST APIs</span>
+                </div>
               </div>
             </div>
-          </div>
+          </TiltCard>
 
-          <div className="proj-card reveal">
-            <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.09), rgba(0, 229, 255, 0.06))' }}>🛒</div>
-            <div className="proj-body">
-              <div className="proj-year" style={{ color: '#f59e0b' }}>Full-Stack · 2024</div>
-              <div className="proj-name">E-Commerce Platform</div>
-              <div className="proj-desc">Complete full-stack e-commerce app with JWT authentication, role-based access control, cart management, and admin dashboard. React + Node/Express + SQLite.</div>
-              <div className="proj-stack">
-                <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>React</span>
-                <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>Express.js</span>
-                <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>SQLite</span>
-                <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>JWT</span>
+          <TiltCard className="reveal">
+            <div className="proj-card" style={{ height: '100%' }}>
+              <div className="proj-thumb" style={{ background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.09), rgba(0, 229, 255, 0.06))' }}>🛒</div>
+              <div className="proj-body">
+                <div className="proj-year" style={{ color: '#f59e0b' }}>Full-Stack · 2024</div>
+                <div className="proj-name">E-Commerce Platform</div>
+                <div className="proj-desc">Complete full-stack e-commerce app with JWT authentication, role-based access control, cart management, and admin dashboard. React + Node/Express + SQLite.</div>
+                <div className="proj-stack">
+                  <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>React</span>
+                  <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>Express.js</span>
+                  <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>SQLite</span>
+                  <span className="ps" style={{ background: 'rgba(245, 158, 11, 0.08)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)' }}>JWT</span>
+                </div>
               </div>
             </div>
-          </div>
+          </TiltCard>
         </div>
       </section>
 
